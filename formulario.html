@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Interessado em Adoção</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+        .back-button {
+            text-decoration: none;
+        }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .registration-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        .registration-form h2 {
+            font-family: 'Georgia', serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .registration-form input[type="text"],
+        .registration-form input[type="tel"],
+        .registration-form input[type="email"],
+        .registration-form input[type="url"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .registration-form button[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .registration-form button[type="submit"]:hover {
+            background-color: #218838;
+        }
+        .registration-form .back-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+            display: block;
+            text-align: center;
+        }
+        .registration-form .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="adoptionForm" class="registration-form">
+        <form onsubmit="submitAdoptionForm(event)">
+            <h2>Cadastro de Interessado em Adoção</h2>
+            <input type="text" id="dogName" name="dogName" placeholder="Nome do Cachorro" required>
+            <input type="text" id="ownerName" name="ownerName" placeholder="Nome do Dono" required>
+            <input type="tel" id="ownerPhone" name="ownerPhone" placeholder="Telefone do Dono" required>
+            <input type="email" id="ownerEmail" name="ownerEmail" placeholder="Email do Dono" required>
+            <input type="url" id="dogImage" name="dogImage" placeholder="URL da Imagem do Cachorro" required>
+            <button type="submit">Enviar</button>
+            <button type="button" class="back-button" onclick="goBack()">Voltar</button>
+        </form>
+    </div>
+
+    <script>
+        function submitAdoptionForm(event) {
+            event.preventDefault();
+            const dogName = document.getElementById('dogName').value;
+            const ownerName = document.getElementById('ownerName').value;
+            const ownerPhone = document.getElementById('ownerPhone').value;
+            const ownerEmail = document.getElementById('ownerEmail').value;
+            const dogImage = document.getElementById('dogImage').value;
+            
+            console.log(`Cadastro:
+                         Nome do Cachorro: ${dogName}
+                         Dono: ${ownerName}
+                         Telefone: ${ownerPhone}
+                         Email: ${ownerEmail}
+                         Imagem: ${dogImage}`);
+            
+            alert("Cadastro de interessado em adoção enviado com sucesso!");
+            document.getElementById('adoptionForm').reset();
+        }
+
+        function goBack() {
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

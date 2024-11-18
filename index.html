@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://icons.iconarchive.com/icons/icons8/windows-8/256/Animals-Dog-Track-icon.png" type="image/x-icon">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+
+        }
+        label {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 20px;
+            color: #FF4500; /* Cor destacada */
+        }
+        table {
+            width: 100%; /* Proporção da página */
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 15px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.8); /* Fundo transparente */
+            margin: 20px 0;
+        }
+        td, th {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        thead {
+            background: gray;
+            color: white;
+        }
+        .rounded-image {
+            width: 120px;
+            height: auto;
+            border-radius: 15px;
+        }
+        .title {
+            text-align: center;
+            font-family: 'Georgia', serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            background: rgba(255, 255, 255, 0.8);
+            margin: 0;
+            padding: 10px;
+        }
+        .hidden {
+            display: none;
+        }
+        .confirmation {
+            font-family: 'Georgia', serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 20px;
+            text-align: center;
+        }
+        /* Tela de cadastro */
+        .registration-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        .registration-form input[type="text"],
+        .registration-form input[type="tel"],
+        .registration-form input[type="email"],
+        .registration-form input[type="url"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .registration-form button[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .registration-form button[type="submit"]:hover {
+            background-color: #218838;
+        }
+        .notification {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border: 2px solid #28a745;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: none;
+        }
+        .notification.show {
+            display: block;
+        }
+        /* Melhorando os botões de ação */
+        .action-buttons {
+            margin: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .action-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        #registerButton {
+            background-color: #007bff;
+            color: white;
+        }
+        #registerButton:hover {
+            background-color: #0056b3;
+        }
+        #addDogButton {
+            background-color: #28a745;
+            color: white;
+        }
+        #addDogButton:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div id="dogSelection">
+        <p class="title">Lista de Cachorros para Adoção e Contatos dos Atuais Donos</p> 
+        <label for="range">Lista Geral de Cachorros Disponíveis para Adoção:</label>
+        <input type="range" id="range" name="range" min="1" max="10" step="1" value="2" onchange="updateDogList(this.value)">
+        <div class="action-buttons">
+            <button type="button" id="registerButton" onclick="checkDogSelection()">SELECIONE O CACHORRO E CLIQUE AQUI PARA CADASTRO</button>
+            <a href="formulario.html"><button type="button" id="addDogButton" onclick="openAdoptionForm()">ADICIONAR NOVO CACHORRO PARA ADOÇÃO</button></a>
+        </div>
+ 
+
+    <script>
+        function checkDogSelection() {
+            // Lógica para verificar seleção de cachorro e redirecionar para cadastro
+            alert("Selecione o cachorro desejável .");
+        }
+
+        function openAdoptionForm() {
+            document.getElementById('dogSelection').classList.add('hidden');
+            document.getElementById('adoptionForm').classList.remove('hidden');
+        }
+
+        function submitAdoptionForm(event) {
+            event.preventDefault();
+            // Lógica para submissão do formulário
+            const dogName = document.getElementById('dogName').value;
+            const ownerName = document.getElementById('ownerName').value;
+            const ownerPhone = document.getElementById('ownerPhone').value;
+            const ownerEmail = document.getElementById('ownerEmail').value;
+            const dogImage = document.getElementById('dogImage').value;
+            
+            console.log(`Cadastro:
+                         Nome do Cachorro: ${dogName}
+                         Dono: ${ownerName}
+                         Telefone: ${ownerPhone}
+                         Email: ${ownerEmail}
+                         Imagem: ${dogImage}`);
+            
+            // Aqui você pode adicionar a lógica para enviar os dados para um servidor, salvar localmente, etc.
+            
+            alert("Cadastro de interessado em adoção enviado com sucesso!");
+            document.getElementById('adoptionForm').reset();
+            document.getElementById('adoptionForm').classList.add('hidden');
+            document.getElementById('dogSelection').classList.remove('hidden');
+        }
+
+        function updateDogList(value) {
+            // Lógica para atualizar a lista de cachorros com base no valor do range
+            console.log("Valor do range: " + value);
+        }
+    </script>
+</body>
+</html>
+
+
+
+        </div>
+        <table>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Imagem</th>
+                        <th>Cachorro</th>
+                        <th>Dono</th>
+                        <th>Telefone</th>
+                        <th>Email</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="dogList">
+                    <!-- As linhas dos cachorros serão inseridas aqui -->
+                </tbody>
+            </table>
+            <thead>
+                <tr>
+                    
+                </tr>
+            </thead>
+            <tbody id="dogList">
+                <!-- As linhas dos cachorros serão inseridas aqui -->
+            </tbody>
+        </table>
+    </div>
+
+
+    <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Interessado em Adoção</title>
+    <style>
+
+        .hidden {
+            display: none;
+        }
+        .rounded-image {
+            border-radius: 50%;
+        }
+        .registration-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            margin: 20px;
+        }
+        .title {
+            font-family: 'Georgia', serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .registration-form input[type="text"],
+        .registration-form input[type="tel"],
+        .registration-form input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .registration-form button[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .registration-form button[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div id="dogSelection">
+      
+
+        
+    </div>
+    <div id="registrationForm" class="hidden">
+        <h2 class="title">Cadastro de Interessado em Adoção</h2>
+        <form onsubmit="showConfirmation(event)" class="registration-form">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required placeholder="Digite seu nome">
+            <label for="phone">Telefone:</label>
+            <input type="tel" id="phone" name="phone" required placeholder="Digite seu telefone">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required placeholder="Digite seu email">
+            <button type="submit">Enviar Cadastro</button>
+            
+        </form>
+    </div>
+    <div id="popupMessage" class="notification">
+        Parabéns pelo cadastro! Aguarde, entraremos em contato.
+    </div>
+
+   
+
+    <script>
+        const allDogs = [
+            {
+                img: "https://placedog.net/500/280?random=1",
+                name: "Rex",
+                owner: "Ana Silva",
+                phone: "(11) 91234-5678",
+                email: "ana.silva@example.com"
+            },
+            {
+                img: "https://placedog.net/500/280?random=2",
+                name: "Bolt",
+                owner: "Bruno Costa",
+                phone: "(11) 92345-6789",
+                email: "bruno.costa@example.com"
+            }
+            // Adicione mais cachorros conforme necessário
+        ];
+
+        let selectedDog = null;
+
+        function updateDogList(quantity) {
+            const dogList = document.querySelector("#dogList");
+            dogList.innerHTML = "";
+            for (let i = 0; i < quantity; i++) {
+                if (allDogs[i]) {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td><img src="${allDogs[i].img}" class="rounded-image" alt="Imagem do cachorro"/></td>
+                        <td>${allDogs[i].name}</td>
+                        <td>${allDogs[i].owner}</td>
+                        <td>${allDogs[i].phone}</td>
+                        <td>${allDogs[i].email}</td>
+                        <td>
+                            <button type="button" onclick="selectDog(this, ${i})">Selecionar</button>
+                            <button type="button" onclick="resetList()">Desfazer</button>
+                        </td>
+                    `;
+                    dogList.appendChild(row);
+                }
+            }
+        }
+
+        function selectDog(button, index) {
+            selectedDog = index;
+            let row = button.closest("tr");
+            document.querySelector("#dogList").innerHTML = "";
+            document.querySelector("#dogList").appendChild(row);
+            showRegistrationForm();
+        }
+
+        function resetList() {
+            selectedDog = null;
+            document.getElementById("registrationForm").classList.add("hidden");
+            document.getElementById("dogSelection").classList.remove("hidden");
+            updateDogList(allDogs.length);
+        }
+
+        function showRegistrationForm() {
+            document.getElementById("dogSelection").classList.add("hidden");
+            document.getElementById("registrationForm").classList.remove("hidden");
+        }
+
+        function showConfirmation(event) {
+            event.preventDefault();
+            document.querySelector("form").classList.add("hidden");
+
+            const popupMessage = document.getElementById("popupMessage");
+            popupMessage.classList.add("show");
+
+            setTimeout(() => {
+                popupMessage.classList.remove("show");
+                document.getElementById("registrationForm").classList.add("hidden");
+                document.getElementById("dogSelection").classList.remove("hidden");
+                document.querySelector("form").classList.remove("hidden"); // Reset form visibility
+                document.querySelector("form").reset(); // Clear form inputs
+                selectedDog = null; // Reset selected dog
+                updateDogList(allDogs.length);
+            }, 3000); // A mensagem será exibida por 3 segundos
+        }
+
+        // Inicializa a lista com a quantidade total de cachorros
+        updateDogList(allDogs.length);
+    </script>
+</body>
+</html>
